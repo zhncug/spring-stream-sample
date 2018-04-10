@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        bounce_shell_input:
+          contentType: text/plain
+          destination: event_notify
+          binder: local_rabbit
+        output:
+          destination: queue.pretty.log.messages
+          binder: local_rabbit
+      rabbit:
+        bindings:
+          bounce_shell_input:
+            consumer:
+              bindingRoutingKey: event.intrusion_detect
+      binders:
+        local_rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 127.0.0.1
+                port: 5672
+                virtual-host: /
