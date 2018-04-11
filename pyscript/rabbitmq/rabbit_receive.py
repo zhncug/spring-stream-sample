@@ -5,15 +5,16 @@ import sys
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
-channel.exchange_declare(exchange='event_notify',
-                         exchange_type='topic')
+channel.exchange_declare(exchange='spring_cloud_stream_output',
+                         exchange_type='topic',
+                         durable=True)
 
 result = channel.queue_declare(exclusive=True)
 queue_name = result.method.queue
 
-channel.queue_bind(exchange='event_notify',
+channel.queue_bind(exchange='spring_cloud_stream_output',
                    queue=queue_name,
-                   routing_key='event.intrusion_detect')
+                   routing_key="#")
 
 print(' [*] Waiting for logs. To exit press CTRL+C')
 

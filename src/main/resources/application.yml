@@ -6,14 +6,18 @@ spring:
           contentType: text/plain
           destination: event_notify
           binder: local_rabbit
-        output:
-          destination: queue.pretty.log.messages
+        bounce_output:
+          contentType: text/plain
+          destination: spring_cloud_stream_output
           binder: local_rabbit
       rabbit:
         bindings:
           bounce_shell_input:
             consumer:
               bindingRoutingKey: event.intrusion_detect
+          bounce_output:
+            producer:
+              bindingRoutingKey: bounceshell
       binders:
         local_rabbit:
           type: rabbit
