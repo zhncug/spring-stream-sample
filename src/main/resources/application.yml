@@ -15,9 +15,10 @@ spring:
           bounce_shell_input:
             consumer:
               bindingRoutingKey: event.intrusion_detect
+              exchangeDurable: true
           bounce_output:
             producer:
-              bindingRoutingKey: bounceshell
+              bindingRoutingKey: spring_cloud_stream_output
       binders:
         local_rabbit:
           type: rabbit

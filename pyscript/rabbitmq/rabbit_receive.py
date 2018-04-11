@@ -14,7 +14,7 @@ queue_name = result.method.queue
 
 channel.queue_bind(exchange='spring_cloud_stream_output',
                    queue=queue_name,
-                   routing_key="#")
+                   routing_key="spring_cloud_stream_output")
 
 print(' [*] Waiting for logs. To exit press CTRL+C')
 

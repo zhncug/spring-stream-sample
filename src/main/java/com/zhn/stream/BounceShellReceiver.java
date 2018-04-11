@@ -16,17 +16,17 @@ import org.springframework.util.MimeTypeUtils;
 /**
  * Created by nan.zhang on 18-4-8.
  */
-@Component
+//@Component
 @EnableBinding(BounceShell.class)
 public class BounceShellReceiver {
 
     private static Logger logger = LoggerFactory.getLogger(BounceShellReceiver.class);
-    private BounceShell bounceShell;
-
-    @Autowired
-    public BounceShellReceiver(BounceShell bounceShell) {
-        this.bounceShell = bounceShell;
-    }
+//    private BounceShell bounceShell;
+//
+//    @Autowired
+//    public BounceShellReceiver(BounceShell bounceShell) {
+//        this.bounceShell = bounceShell;
+//    }
 
     /**
      * 接受input消息，并发送一条消息到output
@@ -37,7 +37,8 @@ public class BounceShellReceiver {
     @SendTo(BounceShell.OUTPUT)
     public String receive(String playload) {
         logger.info("Received:" + playload);
-        return send("Java received a message");
+        return "Java received a message";
+//        return send("Java received a message");
     }
 
 
@@ -46,14 +47,14 @@ public class BounceShellReceiver {
 //        logger.info("receive msg:" + msg);
 //    }
 
-    public String send(String message) {
-        logger.info("send message:" + message);
-        MessageChannel messageChannel = bounceShell.output();
-        messageChannel.send(MessageBuilder
-                .withPayload(message)
-                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-                .build());
-
-        return message;
-    }
+//    public String send(String message) {
+//        logger.info("send message:" + message);
+//        MessageChannel messageChannel = bounceShell.output();
+//        messageChannel.send(MessageBuilder
+//                .withPayload(message)
+//                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+//                .build());
+//
+//        return message;
+//    }
 }
