@@ -12,7 +12,7 @@ public interface BounceShell {
 
     String INPUT = "bounce_shell_input";
 
-    String OUPUT = "output";
+    String OUPUT = "bounce_output";
 
     @Input(INPUT)
     SubscribableChannel input();
